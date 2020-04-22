@@ -1,4 +1,5 @@
-OS info is 
+# Информация о ОС
+OS info is
 uname_result(system='Darwin', node='Fedya.local', release='19.4.0', version='Darwin Kernel Version 19.4.0: Wed Mar  4 22:28:40 PST 2020; root:xnu-6153.101.6~15/RELEASE_X86_64', machine='x86_64', processor='i386')
 
 Python version is 3.8.0 (v3.8.0:fa919fdf25, Oct 14 2019, 10:23:27) 
