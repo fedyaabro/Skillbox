@@ -10,5 +10,20 @@
 #   Студенту надо попросить ХХХ.ХХ рублей
 
 educational_grant, expenses = 10000, 12000
+percent = 0.03
+parents_help = 2000  # учтен первый месяц
+i = 1  # так как в первояце наценки нет, то он пропущен
+while i != 10:
+    expenses += expenses * percent
+    different = expenses - educational_grant
+    # print(months[i], 'й', 'цена за месяц c с процентом', expenses)
+    # print('---' * 30)
+    # print('затраты - степуха', different)
+    # print('---' * 30)
+    parents_help += different
+    i += 1
+print('У родителей нужно попросить', round(parents_help, 2), 'рублей')
 
-# TODO здесь ваш код
+
+
+
