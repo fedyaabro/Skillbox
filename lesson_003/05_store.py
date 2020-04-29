@@ -48,6 +48,18 @@ store = {
 
 # TODO здесь ваш код
 
+for item, code in goods.items():
+    total_quantity = 0
+    total_price = 0
+    items_list = store[code]
+    i = 0
+    for things in items_list:
+        total_quantity = items_list[i]['quantity']
+        price_quantity = total_quantity * items_list[i]['price']
+        total_price += price_quantity
+        i += 1
+    print('Товар:', item, ',кол-во:', total_quantity, ',стоимость:', total_price)
+
 
 
 
