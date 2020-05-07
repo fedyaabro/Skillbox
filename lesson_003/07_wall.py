@@ -18,7 +18,6 @@ brick_height = 50
 left_bottom_wall = sd.get_point(100, 100)
 right_top_wall = sd.get_point(wall_width, wall_height)
 sd.rectangle(left_bottom=left_bottom_wall, right_top=right_top_wall, width=1)
-# different_block = wall_width % brick_width
 brick_shift_index = 0
 for brick_y in range(100, wall_height, brick_height):
     for brick_x in range(100, wall_width, brick_width):
