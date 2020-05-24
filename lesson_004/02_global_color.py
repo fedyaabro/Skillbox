@@ -15,54 +15,59 @@ import simple_draw as sd
 # Результат решения см lesson_004/results/exercise_02_global_color.jpg
 
 sd.resolution = (1200, 800)
-colors = (sd.COLOR_RED,
-          sd.COLOR_ORANGE,
-          sd.COLOR_YELLOW,
-          sd.COLOR_GREEN,
-          sd.COLOR_CYAN,
-          sd.COLOR_BLUE,
-          sd.COLOR_PURPLE)
 
-user_color = int(input("""Please, enter color number:
-                       0: COLOR_RED
-                       1: COLOR_ORANGE
-                       2: COLOR_YELLOW
-                       3: COLOR_GREEN
-                       4: COLOR_CYAN
-                       5: COLOR_BLUE
-                       6: COLOR_PURPLE
-                       """))
+colors_list = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple']
+
+colors = {'red': sd.COLOR_RED,
+          'orange': sd.COLOR_ORANGE,
+          'yellow': sd.COLOR_YELLOW,
+          'green': sd.COLOR_GREEN,
+          'cyan': sd.COLOR_CYAN,
+          'blue': sd.COLOR_BLUE,
+          'purple': sd.COLOR_PURPLE}
 
 
-def draw_shapes(start_point=sd.get_point(100, 100), incline_angle=0, *, step, length, color=colors[user_color]):
+def draw_shapes(start_point=sd.get_point(100, 100), angle=0, *, step, length, color=sd.COLOR_YELLOW):
     shapes_sides = None
     next_start_point = start_point
-    # ниже из суммы углов вычетается 1 шаг = угол, так как последняя сторона рисуется отдельно из-за проблемы округления
-    for step in range(incline_angle, 360 - step, step):
-        shapes_sides = sd.get_vector(start_point=next_start_point, angle=step, length=length)
+# ниже из суммы углов вычетается 1 шаг = угол, так как последняя сторона рисуется отдельно из-за проблемы округления
+    for step in range(angle, 360 - step, step):
+        shapes_sides = sd.get_vector(start_point=next_start_point, angle=step, length=length, width=5)
         shapes_sides.draw(color=color)
         next_start_point = shapes_sides.end_point
-    sd.line(start_point=start_point, end_point=shapes_sides.end_point, width=1, color=color)
+    sd.line(start_point=start_point, end_point=shapes_sides.end_point, width=5, color=color)
 
 
-def triangle(start_point=sd.get_point(500, 200), angle=0, length=100):
+for index, color in enumerate(colors_list):
+    print(index, ':', color)
+
+while True:
+    user_color = int(input('please enter a color number > '))
+    if 0 <= user_color <= len(colors) - 1:
+        break
+    print('incorrect number')
+
+color = colors[colors_list[user_color]]
+
+
+def triangle(start_point=sd.get_point(500, 200), angle=30, length=100):
     """Draw triangle from start point and angle"""
-    draw_shapes(start_point=start_point, incline_angle=angle, step=120, length=length)
+    draw_shapes(start_point=start_point, angle=angle, step=120, length=length, color=color)
 
 
-def square(start_point=sd.get_point(200, 200), angle=0, length=100):
+def square(start_point=sd.get_point(200, 200), angle=30, length=100):
     """Draw square from start point and angle"""
-    draw_shapes(start_point=start_point, step=90, length=length, incline_angle=angle)
+    draw_shapes(start_point=start_point, step=90, length=length, angle=angle, color=color)
 
 
-def pentagon(start_point=sd.get_point(200, 500), angle=0, length=100):
+def pentagon(start_point=sd.get_point(200, 500), angle=30, length=100):
     """Draw pentagon from start point and angle"""
-    draw_shapes(start_point=start_point, step=72, length=length, incline_angle=angle)
+    draw_shapes(start_point=start_point, step=72, length=length, angle=angle, color=color)
 
 
-def hexagon(start_point=sd.get_point(600, 500), angle=0, length=100):
+def hexagon(start_point=sd.get_point(600, 500), angle=30, length=100):
     """Draw hexagon from start point and angle"""
-    draw_shapes(start_point=start_point, step=60, length=length, incline_angle=angle)
+    draw_shapes(start_point=start_point, step=60, length=length, angle=angle, color=color)
 
 
 triangle()
