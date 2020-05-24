@@ -6,12 +6,12 @@ sd.resolution = (1200, 800)
 
 
 def draw_shapes(start_point=sd.get_point(100, 100), incline_angle=0, *, step, length):
-    global shapes_sides
+    shapes_sides = None
     next_start_point = start_point
 # ниже из суммы углов вычетается 1 шаг = угол, так как последняя сторона рисуется отдельно из-за проблемы округления
     for step in range(incline_angle, 360 - step, step):
         shapes_sides = sd.get_vector(start_point=next_start_point, angle=step, length=length)
-        shapes_sides.draw()
+        shapes_sides.draw(color=sd.COLOR_PURPLE)
         next_start_point = shapes_sides.end_point
     sd.line(start_point=start_point, end_point=shapes_sides.end_point, width=1)
 
